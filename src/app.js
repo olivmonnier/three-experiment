@@ -36,16 +36,17 @@ function init() {
 
   terrain = THREE.Terrain({
     easing: THREE.Terrain.Linear,
-    frequency: 2.5,
+    frequency: 5,
     heightmap: THREE.Terrain.DiamondSquare,
     material: new THREE.MeshBasicMaterial({color: 0x5566aa}),
-    maxHeight: 100,
+    maxHeight: 50,
     minHeight: -100,
     steps: 1,
     useBufferGeometry: false,
     xSize: 1024,
     ySize: 1024
   });
+  console.log(terrain);
   scene.add(terrain);
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
