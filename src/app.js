@@ -48,10 +48,10 @@ function init() {
   });
   scene.add(terrain);
 
-  renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize( window.innerWidth, window.innerHeight );
-  renderer.setClearColor(new THREE.Color(0x000, 1.0));
-  renderer.shadowMapEnabled = true;
+  renderer.setClearColor(new THREE.Color(0xffffff));
+  renderer.shadowMap.enabled = true;
 
   document.getElementById('view').appendChild( renderer.domElement );
 }
