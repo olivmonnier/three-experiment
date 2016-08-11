@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <script src="node_modules/three/build/three.js"></script>
-    <script src="node_modules/three.terrain.js/build/THREE.Terrain.min.js"></script>
-    <script src="libs/Detector.js"></script>
-    <script src="libs/FirstPersonControls.js"></script>
+    <script src="three/build/three.js"></script>
+    <script src="three.terrain.js/build/THREE.Terrain.min.js"></script>
+    <script src="Detector.js"></script>
+    <script src="PointerLockControls.js"></script>
     <style>
       html, body {
         margin: 0;
@@ -24,8 +24,5 @@
     <div id="view"></div>
   </body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js');
-  </script>
+  <script src="./app.js"></script>
 </html>
