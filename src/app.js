@@ -27,11 +27,12 @@ function init() {
   controls = new THREE.PointerLockControls(camera);
   scene.add(controls.getObject());
 
-  ambientLight = new THREE.AmbientLight(0x383838);
+  ambientLight = new THREE.AmbientLight(0x0c0c0c);
   scene.add(ambientLight);
 
   spotLight = new THREE.SpotLight(0xffffff);
-  spotLight.position.set(100, 140, 130);
+  spotLight.position.set(100, 200, 130);
+  spotLight.castShadow = true;
   spotLight.intensity = 2;
   scene.add(spotLight);
 
@@ -47,6 +48,7 @@ function init() {
     xSize: 1024,
     ySize: 1024
   });
+  terrain.receiveShadow = true;
   scene.add(terrain);
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
