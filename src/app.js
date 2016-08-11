@@ -19,6 +19,7 @@ function init() {
   initControls();
 
   scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0xffffff, 10, 500);
 
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
   camera.position.z = 10;
@@ -46,7 +47,6 @@ function init() {
     xSize: 1024,
     ySize: 1024
   });
-  console.log(terrain);
   scene.add(terrain);
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
