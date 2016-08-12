@@ -3,6 +3,9 @@ import { Plane } from './Class/Plane';
 import { AmbientLight } from './Class/AmbientLight';
 import { SpotLight } from './Class/SpotLight';
 import { Person } from './Class/Person';
+import { CSS3D } from './Plugins/CSS3D';
+
+let element, div, scene2, renderer2;
 
 Plane.addTo(GAME);
 AmbientLight.addTo(GAME);
@@ -28,6 +31,16 @@ GAME.setControls(
   })
 );
 
-// GAME.setControls(WHS.orbitControls());
+const css3d = new CSS3D({
+  camera: GAME.camera._native,
+  html: '<a href="#">Hello World</a>',
+  pos: {
+    z: -200
+  }
+});
+
+GAME.addLoop(css3d.loop);
+
+css3d.loop.start();
 
 GAME.start();

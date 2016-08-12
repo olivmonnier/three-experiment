@@ -18,8 +18,7 @@
   },
   "homepage": "",
   "dependencies": {
-    "whitestormjs": "^0.10.2",
-    "whs-terrain": "0.0.10"
+    "whitestormjs": "^0.10.2"
   },
   "browserify": {
     "transform": [
