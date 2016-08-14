@@ -5,7 +5,7 @@ export const Plane = new WHS.Plane({
   },
   mass: 0,
   material: {
-    color: 0x5566aa,
+    color: 0xCDBF81,//0x5566aa,
     kind: 'basic'
   },
   pos: {

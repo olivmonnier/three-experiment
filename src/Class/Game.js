@@ -18,10 +18,10 @@ export const GAME = new WHS.World({
     fixedTimeStep: 1 / 120
   },
   background: {
-    color: 0x70DBFF
-  },
-  fog: {
-    type: 'regular',
-    far: 200
+    color: 0x7ec0ee
   }
+  // fog: {
+  //   type: 'regular',
+  //   far: 200
+  // }
 });
