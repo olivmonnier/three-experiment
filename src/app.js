@@ -6,9 +6,16 @@ import { CSS3D } from './Plugins/CSS3D';
 import { Terrain } from './Plugins/Terrain';
 
 const terrain = new Terrain({
+  camera: Person._native,
+  tileWidth: 400,
+  tileHeight: 400
+});
+const css3d = new CSS3D({
   camera: GAME.camera._native,
-  tileWidth: 10,
-  tileHeight: 10
+  html: '<a href="#">Hello World</a>',
+  pos: {
+    z: -200
+  }
 });
 
 AmbientLight.addTo(GAME);
@@ -35,16 +42,10 @@ GAME.setControls(
   })
 );
 
-const css3d = new CSS3D({
-  camera: GAME.camera._native,
-  html: '<a href="#">Hello World</a>',
-  pos: {
-    z: -200
-  }
-});
-
 GAME.addLoop(css3d.loop);
+GAME.addLoop(terrain.loop);
 
 css3d.loop.start();
+terrain.loop.start();
 
 GAME.start();

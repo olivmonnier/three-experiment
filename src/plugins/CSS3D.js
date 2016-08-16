@@ -7,6 +7,12 @@ export class CSS3D {
 
     scene.add(el);
 
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      params.camera.aspect = window.innerWidth / window.innerHeight;
+      params.camera.updateProjectionMatrix();
+    }, false);
+
     return {
       scene,
       renderer,
@@ -39,11 +45,8 @@ export class CSS3D {
     return renderer;
   }
   loop(camera, scene, renderer) {
-
-    const loopRenderer = new WHS.Loop(() => {
+    return new WHS.Loop(() => {
       renderer.render(scene, camera);
     });
-
-    return loopRenderer;
   }
 }

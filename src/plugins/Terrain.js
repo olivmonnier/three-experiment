@@ -21,19 +21,35 @@ function Ground(x, y, z, tileWidth, tileHeight) {
 }
 export class Terrain {
   constructor(params) {
+    const camPos = params.camera.position;
     const floor = [
-      Ground(0, 0, 0, params.tileWidth, params.tileHeight),
-      Ground(0, 0, params.tileHeight, params.tileWidth, params.tileHeight)
+      Ground(camPos.x, 0, camPos.z, params.tileWidth, params.tileHeight),
+      Ground(camPos.x + params.tileWidth, 0, camPos.z, params.tileWidth, params.tileHeight),
+      Ground(camPos.x, 0, camPos.z + params.tileHeight, params.tileWidth, params.tileHeight),
+      Ground(camPos.x + params.tileWidth, 0, camPos.z + params.tileHeight, params.tileWidth, params.tileHeight)
     ];
-    const loop = this.loop(floor, params.camera);
+    const loop = this.loop(floor, params.camera, params.tileWidth, params.tileHeight);
 
     return {
       floor,
       loop
     }
   }
-  loop(camera) {
+  loop(floor, camera, tileWidth, tileHeight) {
     return new WHS.Loop(() => {
+      floor.forEach((f) => {
+        let fpos = f._native.position;
+
+        if ((fpos.x - tileWidth) > camera.position.x) {
+          fpos.x -= tileWidth * 2;
+        } else if ((fpos.x + tileWidth) < camera.position.x) {
+          fpos.x += tileWidth * 2;
+        } else if ((fpos.z - tileHeight) > camera.position.z) {
+          fpos.z -= tileHeight * 2;
+        } else if ((fpos.z + tileHeight) < camera.position.z) {
+          fpos.z += tileHeight * 2;
+        }
+      });
     });
   }
 }

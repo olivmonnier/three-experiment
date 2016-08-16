@@ -6,6 +6,10 @@ export const GAME = new WHS.World({
     y: -100,
     z: 0
   },
+  helpers: {
+    "grid": true,
+    "axis": true
+  },
   camera: {
     far: 10000,
     y: 10,
@@ -19,9 +23,10 @@ export const GAME = new WHS.World({
   },
   background: {
     color: 0x7ec0ee
+  },
+  fog: {
+    type: 'regular',
+    near: 10,
+    far: 300
   }
-  // fog: {
-  //   type: 'regular',
-  //   far: 200
-  // }
 });
