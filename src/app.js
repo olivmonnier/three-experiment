@@ -18,14 +18,14 @@ const css3d = new CSS3D({
   }
 });
 
-new WHS.Skybox({
-  path: 'img/skymap',
-  imgSuffix: '.png',
-  skyType: 'sphere',
-  radius: GAME.getCamera().__params.camera.far,
-  rot: {y: Math.PI / 180 * -90},
-  pos: {y: 400}
-}).addTo(GAME);
+// new WHS.Skybox({
+//   path: 'img/skymap',
+//   imgSuffix: '.png',
+//   skyType: 'sphere',
+//   radius: GAME.getCamera().__params.camera.far,
+//   rot: {y: Math.PI / 180 * -90},
+//   pos: {y: 400}
+// }).addTo(GAME);
 
 AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);

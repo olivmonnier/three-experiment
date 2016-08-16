@@ -23,10 +23,11 @@ export const GAME = new WHS.World({
   },
   background: {
     color: 0x7ec0ee
+  },
+  fog: {
+    type: 'regular',
+    hex: 0x7ec0ee,
+    near: 10,
+    far: 300
   }
-  // fog: {
-  //   type: 'regular',
-  //   near: 10,
-  //   far: 300
-  // }
 });
