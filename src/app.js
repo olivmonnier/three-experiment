@@ -47,7 +47,7 @@ GAME.add(Person).then(() => {
 
 GAME.setControls(
   WHS.firstPersonControls(Person, {
-    speed: 5
+    speed: 10
   })
 );
 
