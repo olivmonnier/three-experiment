@@ -7,8 +7,8 @@ import { Terrain } from './Plugins/Terrain';
 
 const terrain = new Terrain({
   camera: Person._native,
-  tileWidth: 400,
-  tileHeight: 400
+  tileWidth: 800,
+  tileHeight: 800
 });
 const css3d = new CSS3D({
   camera: GAME.camera._native,
@@ -17,6 +17,15 @@ const css3d = new CSS3D({
     z: -200
   }
 });
+
+new WHS.Skybox({
+  path: 'img/skymap',
+  imgSuffix: '.png',
+  skyType: 'sphere',
+  radius: GAME.getCamera().__params.camera.far,
+  rot: {y: Math.PI / 180 * -90},
+  pos: {y: 400}
+}).addTo(GAME);
 
 AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);
