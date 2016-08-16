@@ -1,15 +1,19 @@
 import { GAME } from './Class/Game';
-import { Plane } from './Class/Plane';
 import { AmbientLight } from './Class/AmbientLight';
 import { SpotLight } from './Class/SpotLight';
 import { Person } from './Class/Person';
 import { CSS3D } from './Plugins/CSS3D';
+import { Terrain } from './Plugins/Terrain';
 
-let element, div, scene2, renderer2;
+const terrain = new Terrain({
+  camera: GAME.camera._native,
+  tileWidth: 10,
+  tileHeight: 10
+});
 
-Plane.addTo(GAME);
 AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);
+terrain.floor.forEach(ground => ground.addTo(GAME));
 
 GAME.add(Person).then(() => {
   const checker2 = new WHS.Loop(() => {
