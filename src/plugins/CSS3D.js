@@ -47,6 +47,8 @@ export default class CSS3D {
     const selectedEl = this.scene.getObjectByName(name);
 
     this.scene.remove(selectedEl);
+
+    return this;
   }
   buildRenderer() {
     const renderer = new THREE.CSS3DRenderer();
