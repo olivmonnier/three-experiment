@@ -2,30 +2,24 @@ import { GAME } from './Class/Game';
 import { AmbientLight } from './Class/AmbientLight';
 import { SpotLight } from './Class/SpotLight';
 import { Person } from './Class/Person';
-import { CSS3D } from './Plugins/CSS3D';
-import { Terrain } from './Plugins/Terrain';
+import CSS3D  from './Plugins/CSS3D';
+import Terrain from './Plugins/Terrain';
 
 const terrain = new Terrain({
   camera: Person._native,
-  tileWidth: 800,
-  tileHeight: 800
+  geometry: {
+    width: 800,
+    height: 800
+  }
 });
-const css3d = new CSS3D({
-  camera: GAME.camera._native,
+const css3d = new CSS3D(GAME.camera._native);
+
+css3d.addElement( {
   html: '<a href="#">Hello World</a>',
   pos: {
     z: -200
   }
 });
-
-// new WHS.Skybox({
-//   path: 'img/skymap',
-//   imgSuffix: '.png',
-//   skyType: 'sphere',
-//   radius: GAME.getCamera().__params.camera.far,
-//   rot: {y: Math.PI / 180 * -90},
-//   pos: {y: 400}
-// }).addTo(GAME);
 
 AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);

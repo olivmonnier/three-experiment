@@ -1,38 +1,43 @@
-export class CSS3D {
-  constructor(params) {
-    const scene = new THREE.Scene();
-    const el = this.createElement(params.html, params.pos || {}, params.rot || {});
-    const renderer = this.buildRenderer();
-    const loop = this.loop(params.camera, scene, renderer);
-
-    scene.add(el);
+export default class CSS3D {
+  constructor(camera) {
+    this.camera = camera;
+    this.scene = new THREE.Scene();
+    this.renderer = this.buildRenderer();
+    this.loop = this.loopRenderer();
 
     window.addEventListener('resize', () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      params.camera.aspect = window.innerWidth / window.innerHeight;
-      params.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
     }, false);
-
-    return {
-      scene,
-      renderer,
-      loop
-    }
   }
-  createElement(htmlString, pos, rot) {
+  addElement(params = {}) {
     const element = document.createElement('div');
-    element.innerHTML = htmlString;
+    element.innerHTML = params.html;
     element.className = 'three-div';
 
-    const div = new THREE.CSS3DObject(element);
-    div.position.x = pos.x || 0;
-    div.position.y = pos.y || 0;
-    div.position.z = pos.z || 0;
-    div.rotation.x = rot.x || 0;
-    div.rotation.y = rot.y || 0;
-    div.rotation.z = rot.z || 0;
+    if (params.geometry) {
+      element.style.width = params.geometry.width || 'auto';
+      element.style.height = params.geometry.height || 'auto';
+    }
 
-    return div;
+    const div = new THREE.CSS3DObject(element);
+
+    if (params.pos) {
+      div.position.x = params.pos.x || 0;
+      div.position.y = params.pos.y || 0;
+      div.position.z = params.pos.z || 0;
+    }
+
+    if (params.rot) {
+      div.rotation.x = params.rot.x || 0;
+      div.rotation.y = params.rot.y || 0;
+      div.rotation.z = params.rot.z || 0;
+    }
+
+    this.scene.add(div);
+
+    return this;
   }
   buildRenderer() {
     const renderer = new THREE.CSS3DRenderer();
@@ -44,9 +49,10 @@ export class CSS3D {
 
     return renderer;
   }
-  loop(camera, scene, renderer) {
+  loopRenderer() {
+    const self = this;
     return new WHS.Loop(() => {
-      renderer.render(scene, camera);
+      self.renderer.render(self.scene, self.camera);
     });
   }
 }

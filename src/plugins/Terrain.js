@@ -1,8 +1,8 @@
-function Ground(x, y, z, tileWidth, tileHeight) {
+function Ground(x, y, z, geometry) {
   return new WHS.Plane({
     geometry: {
-      width: tileWidth,
-      height: tileHeight
+      width: geometry.width,
+      height: geometry.height
     },
     mass: 0,
     material: {
@@ -19,16 +19,16 @@ function Ground(x, y, z, tileWidth, tileHeight) {
     }
   });
 }
-export class Terrain {
+export default class Terrain {
   constructor(params) {
     const camPos = params.camera.position;
     const floor = [
-      Ground(camPos.x, 0, camPos.z, params.tileWidth, params.tileHeight),
-      Ground(camPos.x + params.tileWidth, 0, camPos.z, params.tileWidth, params.tileHeight),
-      Ground(camPos.x, 0, camPos.z + params.tileHeight, params.tileWidth, params.tileHeight),
-      Ground(camPos.x + params.tileWidth, 0, camPos.z + params.tileHeight, params.tileWidth, params.tileHeight)
+      Ground(camPos.x, 0, camPos.z, params.geometry),
+      Ground(camPos.x + params.geometry.width, 0, camPos.z, params.geometry),
+      Ground(camPos.x, 0, camPos.z + params.geometry.height, params.geometry),
+      Ground(camPos.x + params.geometry.width, 0, camPos.z + params.geometry.height, params.geometry)
     ];
-    const loop = this.loop(floor, params.camera, params.tileWidth, params.tileHeight);
+    const loop = this.loop(floor, params.camera, params.geometry);
 
     return {
       floor,
