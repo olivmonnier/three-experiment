@@ -35,19 +35,19 @@ export default class Terrain {
       loop
     }
   }
-  loop(floor, camera, tileWidth, tileHeight) {
+  loop(floor, camera, geometry) {
     return new WHS.Loop(() => {
       floor.forEach((f) => {
         let fpos = f._native.position;
 
-        if ((fpos.x - tileWidth) > camera.position.x) {
-          fpos.x -= tileWidth * 2;
-        } else if ((fpos.x + tileWidth) < camera.position.x) {
-          fpos.x += tileWidth * 2;
-        } else if ((fpos.z - tileHeight) > camera.position.z) {
-          fpos.z -= tileHeight * 2;
-        } else if ((fpos.z + tileHeight) < camera.position.z) {
-          fpos.z += tileHeight * 2;
+        if ((fpos.x - geometry.width) > camera.position.x) {
+          fpos.x -= geometry.width * 2;
+        } else if ((fpos.x + geometry.width) < camera.position.x) {
+          fpos.x += geometry.width * 2;
+        } else if ((fpos.z - geometry.height) > camera.position.z) {
+          fpos.z -= geometry.height * 2;
+        } else if ((fpos.z + geometry.height) < camera.position.z) {
+          fpos.z += geometry.height * 2;
         }
       });
     });

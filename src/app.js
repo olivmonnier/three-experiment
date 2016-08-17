@@ -5,6 +5,8 @@ import { Person } from './Class/Person';
 import CSS3D  from './Plugins/CSS3D';
 import Terrain from './Plugins/Terrain';
 
+const blocker = document.getElementById('blocker');
+const btnFullscreen = document.getElementById('btnFullscreen');
 const terrain = new Terrain({
   camera: Person._native,
   geometry: {
@@ -16,7 +18,7 @@ const css3d = new CSS3D(GAME.camera._native);
 
 css3d.addElement({
   name: 'hello',
-  html: '<a href="#">Hello World</a>',
+  html: '<h1>Hello World</h1>',
   pos: {
     z: -200
   }
@@ -26,13 +28,16 @@ AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);
 terrain.floor.forEach(ground => ground.addTo(GAME));
 
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
     const controls = new THREE.DeviceOrientationControls( GAME.camera._native );
     const loopControls = new WHS.Loop(() => {
       controls.update();
     });
-    const blocker = document.getElementById('blocker');
 
+    if (window.confirm('Go in fullscreen ?')) {
+      toggleFullScreen();
+    }
     blocker.style.display = "none";
     GAME.addLoop(loopControls);
     loopControls.start();
@@ -67,6 +72,10 @@ terrain.loop.start();
 
 GAME.start();
 
+btnFullscreen.addEventListener('click', () => {
+  toggleFullScreen();
+});
+
 function toggleFullScreen() {
   if (!document.fullscreenElement &&    // alternative standard method
       !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
@@ -87,13 +96,3 @@ function toggleFullScreen() {
     }
   }
 }
-
-document.addEventListener("keydown", function(e) {
-  if (e.keyCode == 13) {
-    toggleFullScreen();
-  }
-}, false);
-
-document.addEventListener('click', () => {
-  css3d.removeElement('hello');
-});

@@ -3,12 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script src="whitestormjs/build/whitestorm.js"></script>
     <script src="lib/CSS3DRenderer.js"></script>
     <script src="lib/DeviceOrientationControls.js"></script>
     <style>
-      body {
+      html, body {
         font-family: arial, sans-serif;
+        margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+      }
+      #btnFullscreen {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
       }
       #blocker {
         width: 100%;
@@ -28,6 +38,7 @@
     <div id="blocker">
       <p>Click here to start to move. Use the WASD keys to move and your mouse to look around.</p>
     </div>
+    <button id="btnFullscreen" onClick="toggleFullScreen()">Fullscreen</button>
   </body>
 
   <script src="./app.js"></script>
