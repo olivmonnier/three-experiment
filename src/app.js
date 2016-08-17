@@ -14,11 +14,16 @@ const terrain = new Terrain({
 });
 const css3d = new CSS3D(GAME.camera._native);
 
-css3d.addElement( {
+css3d.addElement({
+  name: 'hello',
   html: '<a href="#">Hello World</a>',
   pos: {
     z: -200
   }
+});
+
+document.addEventListener('click', () => {
+  css3d.removeElement('hello');
 });
 
 AmbientLight.addTo(GAME);

@@ -23,6 +23,10 @@ export default class CSS3D {
 
     const div = new THREE.CSS3DObject(element);
 
+    if (params.name) {
+      div.name = params.name;
+    }
+
     if (params.pos) {
       div.position.x = params.pos.x || 0;
       div.position.y = params.pos.y || 0;
@@ -38,6 +42,11 @@ export default class CSS3D {
     this.scene.add(div);
 
     return this;
+  }
+  removeElement(name) {
+    const selectedEl = this.scene.getObjectByName(name);
+
+    this.scene.remove(selectedEl);
   }
   buildRenderer() {
     const renderer = new THREE.CSS3DRenderer();
