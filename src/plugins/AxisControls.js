@@ -1,4 +1,5 @@
 let timeout;
+let velocity = new THREE.Vector3();
 
 export default function AxisControls(world) {
   const axisUp = document.getElementById('axis-up');
@@ -8,8 +9,10 @@ export default function AxisControls(world) {
 
   axisUp.addEventListener('touchstart', () => {
     timeout = setInterval(function() {
-      world.camera._native.position.z -= 0.3;
-      world.camera._native.updateProjectionMatrix();
+      velocity.z -= 0.3
+      world.controls.getObject().translateZ(velocity.z);
+      // world.camera._native.position.z -= 0.3;
+      // world.camera._native.updateProjectionMatrix();
     }, 100);
   });
   axisUp.addEventListener('touchend', () => {
@@ -18,8 +21,10 @@ export default function AxisControls(world) {
 
   axisDown.addEventListener('touchstart', () => {
     timeout = setInterval(function() {
-      world.camera._native.position.z += 0.3;
-      world.camera._native.updateProjectionMatrix();
+      velocity.z += 0.3
+      world.controls.getObject().translateZ(velocity.z);
+      // world.camera._native.position.z += 0.3;
+      // world.camera._native.updateProjectionMatrix();
     }, 100);
   });
   axisDown.addEventListener('touchend', () => {

@@ -82,3 +82,5 @@ document.addEventListener('click', function() {
     document.exitPointerLock();
   }
 });
+
+AxisControls(GAME);
