@@ -4,7 +4,9 @@ import { SpotLight } from './Class/SpotLight';
 import { Person } from './Class/Person';
 import CSS3D  from './Plugins/CSS3D';
 import Terrain from './Plugins/Terrain';
+import AxisControls from './Plugins/AxisControls';
 import toggleFullScreen from './utils/fullscreen';
+import isMobile from './utils/mobile';
 
 const blocker = document.getElementById('blocker');
 const btnFullscreen = document.getElementById('btnFullscreen');
@@ -29,13 +31,16 @@ AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);
 terrain.floor.forEach(ground => ground.addTo(GAME));
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+if (isMobile()) {
+    const axis = document.getElementById('axis');
     const controls = new THREE.DeviceOrientationControls( GAME.camera._native );
     const loopControls = new WHS.Loop(() => {
       controls.update();
     });
 
+    axis.style.display = "inline-block";
     blocker.style.display = "none";
+    AxisControls(GAME);
     GAME.addLoop(loopControls);
     loopControls.start();
 } else {

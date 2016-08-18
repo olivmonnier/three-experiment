@@ -14,11 +14,47 @@
 				padding: 0px;
 				overflow: hidden;
       }
-      #btnFullscreen {
+      #axis {
         position: fixed;
-        bottom: 10px;
-        right: 10px;
-        z-index: 2;
+        bottom: 160px;
+        left: 10px;
+        z-index: 99999;
+      }
+      #axis button {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none;   /* Chrome/Safari/Opera */
+        -khtml-user-select: none;    /* Konqueror */
+        -moz-user-select: none;      /* Firefox */
+        -ms-user-select: none;       /* Internet Explorer/Edge */
+        user-select: none;
+      }
+      #axis-up {
+        position: absolute;
+        top: 0;
+        left: 50px;
+        width: 50px;
+        height: 50px;
+      }
+      #axis-down {
+        position: absolute;
+        top: 100px;
+        left: 50px;
+        width: 50px;
+        height: 50px;
+      }
+      #axis-left {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 50px;
+        height: 50px;
+      }
+      #axis-right {
+        position: absolute;
+        top: 50px;
+        left: 100px;
+        width: 50px;
+        height: 50px;
       }
       #blocker {
         width: 100%;
@@ -29,6 +65,12 @@
         text-align: center;
         color: #fff;
       }
+      .actions {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
+      }
       .three-div {
         font-size: 12px;
       }
@@ -38,7 +80,15 @@
     <div id="blocker">
       <p>Click here to start to move. Use the WASD keys to move and your mouse to look around.</p>
     </div>
-    <button id="btnFullscreen">fullscreen</button>
+    <div class="actions">
+      <button id="btnFullscreen">fullscreen</button>
+    </div>
+    <div id="axis">
+      <button id="axis-up">up</button>
+      <button id="axis-down">down</button>
+      <button id="axis-left">left</button>
+      <button id="axis-right">right</button>
+    </div>
   </body>
 
   <script src="./app.js"></script>
