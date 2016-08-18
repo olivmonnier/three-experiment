@@ -4,6 +4,7 @@ import { SpotLight } from './Class/SpotLight';
 import { Person } from './Class/Person';
 import CSS3D  from './Plugins/CSS3D';
 import Terrain from './Plugins/Terrain';
+import toggleFullScreen from './utils/fullscreen';
 
 const blocker = document.getElementById('blocker');
 const btnFullscreen = document.getElementById('btnFullscreen');
@@ -28,16 +29,12 @@ AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);
 terrain.floor.forEach(ground => ground.addTo(GAME));
 
-
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
     const controls = new THREE.DeviceOrientationControls( GAME.camera._native );
     const loopControls = new WHS.Loop(() => {
       controls.update();
     });
 
-    if (window.confirm('Go in fullscreen ?')) {
-      toggleFullScreen();
-    }
     blocker.style.display = "none";
     GAME.addLoop(loopControls);
     loopControls.start();
@@ -63,7 +60,6 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phon
   );
 }
 
-
 GAME.addLoop(css3d.loop);
 GAME.addLoop(terrain.loop);
 
@@ -76,23 +72,8 @@ btnFullscreen.addEventListener('click', () => {
   toggleFullScreen();
 });
 
-function toggleFullScreen() {
-  if (!document.fullscreenElement &&    // alternative standard method
-      !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) {
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) {
-      document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-    }
-  } else {
-    if (document.cancelFullScreen) {
-      document.cancelFullScreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitCancelFullScreen) {
-      document.webkitCancelFullScreen();
-    }
+document.addEventListener('click', function() {
+  if (!!document.pointerLockElement) {
+    document.exitPointerLock();
   }
-}
+});
