@@ -1,53 +1,25 @@
-let timeout;
-let velocity = new THREE.Vector3();
+function handlerTouchEvent(world, touch) {
+  let {el, axis, speed} = touch;
+  let timeout;
+
+  el.addEventListener('touchstart', () => {
+    timeout = setInterval(function() {
+      world.camera.getNative()[axis](speed);
+      world.camera.getNative().updateProjectionMatrix();
+    }, 100);
+  });
+  el.addEventListener('touchend', () => {
+    clearInterval(timeout);
+  });
+}
 
 export default function AxisControls(world) {
-  const axisUp = document.getElementById('axis-up');
-  const axisDown = document.getElementById('axis-down');
-  const axisLeft = document.getElementById('axis-left');
-  const axisRight = document.getElementById('axis-right');
-
-  axisUp.addEventListener('touchstart', () => {
-    timeout = setInterval(function() {
-      velocity.z -= 0.3
-      world.controls.getObject().translateZ(velocity.z);
-      // world.camera._native.position.z -= 0.3;
-      // world.camera._native.updateProjectionMatrix();
-    }, 100);
-  });
-  axisUp.addEventListener('touchend', () => {
-    clearInterval(timeout);
-  });
-
-  axisDown.addEventListener('touchstart', () => {
-    timeout = setInterval(function() {
-      velocity.z += 0.3
-      world.controls.getObject().translateZ(velocity.z);
-      // world.camera._native.position.z += 0.3;
-      // world.camera._native.updateProjectionMatrix();
-    }, 100);
-  });
-  axisDown.addEventListener('touchend', () => {
-    clearInterval(timeout);
-  });
-
-  axisLeft.addEventListener('touchstart', () => {
-    timeout = setInterval(function() {
-      world.camera._native.position.x -= 0.3;
-      world.camera._native.updateProjectionMatrix();
-    }, 100);
-  });
-  axisLeft.addEventListener('touchend', () => {
-    clearInterval(timeout);
-  });
-
-  axisRight.addEventListener('touchstart', () => {
-    timeout = setInterval(function() {
-      world.camera._native.position.x += 0.3;
-      world.camera._native.updateProjectionMatrix();
-    }, 100);
-  });
-  axisRight.addEventListener('touchend', () => {
-    clearInterval(timeout);
+  [
+    {el: document.getElementById('axis-up'), axis: 'translateZ', speed: -0.5},
+    {el: document.getElementById('axis-down'), axis: 'translateZ', speed: 0.5},
+    {el: document.getElementById('axis-left'), axis: 'translateX', speed: -0.5},
+    {el: document.getElementById('axis-right'), axis: 'translateX', speed: 0.5}
+  ].forEach((touch) => {
+    handlerTouchEvent(world, touch);
   });
 }

@@ -11,13 +11,13 @@ import isMobile from './utils/mobile';
 const blocker = document.getElementById('blocker');
 const btnFullscreen = document.getElementById('btnFullscreen');
 const terrain = new Terrain({
-  camera: Person._native,
+  camera: Person.getNative(),
   geometry: {
     width: 800,
     height: 800
   }
 });
-const css3d = new CSS3D(GAME.camera._native);
+const css3d = new CSS3D(GAME.camera.getNative());
 
 css3d.addElement({
   name: 'hello',
@@ -33,14 +33,14 @@ terrain.floor.forEach(ground => ground.addTo(GAME));
 
 if (isMobile()) {
     const axis = document.getElementById('axis');
-    const controls = new THREE.DeviceOrientationControls( GAME.camera._native );
+    const controls = new THREE.DeviceOrientationControls( GAME.camera.getNative() );
     const loopControls = new WHS.Loop(() => {
       controls.update();
     });
 
     axis.style.display = "inline-block";
     blocker.style.display = "none";
-    AxisControls(GAME);
+    // AxisControls(GAME);
     GAME.addLoop(loopControls);
     loopControls.start();
 } else {

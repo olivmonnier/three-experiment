@@ -38,7 +38,7 @@ export default class Terrain {
   loop(floor, camera, geometry) {
     return new WHS.Loop(() => {
       floor.forEach((f) => {
-        let fpos = f._native.position;
+        let fpos = f.getNative().position;
 
         if ((fpos.x - geometry.width) > camera.position.x) {
           fpos.x -= geometry.width * 2;
