@@ -37,12 +37,14 @@ if (isMobile()) {
     const loopControls = new WHS.Loop(() => {
       controls.update();
     });
+    const axisControls = new AxisControls(GAME);
 
     axis.style.display = "inline-block";
     blocker.style.display = "none";
-    // AxisControls(GAME);
     GAME.addLoop(loopControls);
+    GAME.addLoop(axisControls.loop);
     loopControls.start();
+    axisControls.loop.start();
 } else {
   GAME.add(Person).then(() => {
     const checker2 = new WHS.Loop(() => {
@@ -82,5 +84,3 @@ document.addEventListener('click', function() {
     document.exitPointerLock();
   }
 });
-
-AxisControls(GAME);
