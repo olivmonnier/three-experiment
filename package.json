@@ -20,6 +20,7 @@
   "dependencies": {
     "babelify": "^7.3.0",
     "budo": "^8.3.0",
+    "font-awesome": "^4.6.3",
     "whitestormjs": "^0.10.2"
   },
   "browserify": {

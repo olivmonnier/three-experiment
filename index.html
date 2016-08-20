@@ -7,6 +7,7 @@
     <script src="whitestormjs/build/whitestorm.js"></script>
     <script src="lib/CSS3DRenderer.js"></script>
     <script src="lib/DeviceOrientationControls.js"></script>
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
     <style>
       html, body {
         font-family: arial, sans-serif;
@@ -28,6 +29,7 @@
         -moz-user-select: none;      /* Firefox */
         -ms-user-select: none;       /* Internet Explorer/Edge */
         user-select: none;
+        border-radius: 20px;
       }
       #axis-up {
         position: absolute;
@@ -66,6 +68,11 @@
         text-align: center;
         color: #fff;
       }
+      #btnFullscreen {
+        width: 50px;
+        height: 50px;
+        border-radius: 20px;
+      }
       .actions {
         position: fixed;
         bottom: 10px;
@@ -82,13 +89,13 @@
       <p>Click here to start to move. Use the WASD keys to move and your mouse to look around.</p>
     </div>
     <div class="actions">
-      <button id="btnFullscreen">fullscreen</button>
+      <button id="btnFullscreen"><i class="fa fa-arrows-alt"></i></button>
     </div>
     <div id="axis">
-      <button id="axis-up">up</button>
-      <button id="axis-down">down</button>
-      <button id="axis-left">left</button>
-      <button id="axis-right">right</button>
+      <button id="axis-up"><i class="fa fa-arrow-up"></i></button>
+      <button id="axis-down"><i class="fa fa-arrow-down"></i></button>
+      <button id="axis-left"><i class="fa fa-arrow-left"></i></button>
+      <button id="axis-right"><i class="fa fa-arrow-right"></i></button>
     </div>
   </body>
 

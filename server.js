@@ -8,7 +8,7 @@ budo('./src/app.js', {
     './node_modules',
     './libs'
   ],
-  port: 8000,             // use this port
+  port: process.env.PORT || 8000,             // use this port
   browserify: {
     transform: babelify   // ES6
   }
