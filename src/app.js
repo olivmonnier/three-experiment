@@ -12,7 +12,7 @@ import isMobile from './utils/mobile';
 const blocker = document.getElementById('blocker');
 const btnFullscreen = document.getElementById('btnFullscreen');
 const terrain = new Terrain({
-  camera: Person.getNative(),
+  world: GAME,
   geometry: {
     width: 800,
     height: 800
