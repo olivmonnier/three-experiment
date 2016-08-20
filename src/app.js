@@ -2,9 +2,9 @@ import { GAME } from './Class/Game';
 import { AmbientLight } from './Class/AmbientLight';
 import { SpotLight } from './Class/SpotLight';
 import { Person } from './Class/Person';
-import CSS3D  from './Plugins/CSS3D';
-import Terrain from './Plugins/Terrain';
-import AxisControls from './Plugins/AxisControls';
+import CSS3D  from './plugins/CSS3D';
+import Terrain from './plugins/Terrain';
+import AxisControls from './plugins/AxisControls';
 import toggleFullScreen from './utils/fullscreen';
 import isMobile from './utils/mobile';
 
