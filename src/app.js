@@ -2,6 +2,7 @@ import { GAME } from './Class/Game';
 import { AmbientLight } from './Class/AmbientLight';
 import { SpotLight } from './Class/SpotLight';
 import { Person } from './Class/Person';
+import { Box } from './Class/Box';
 import CSS3D  from './plugins/CSS3D';
 import Terrain from './plugins/Terrain';
 import AxisControls from './plugins/AxisControls';
@@ -21,14 +22,16 @@ const css3d = new CSS3D(GAME.camera.getNative());
 
 css3d.addElement({
   name: 'hello',
-  html: '<h1>Hello World</h1>',
+  html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/YE7VzlLtp-4" frameborder="0" allowfullscreen></iframe>',
   pos: {
-    z: -200
+    y: 200,
+    z: -400
   }
 });
 
 AmbientLight.addTo(GAME);
 SpotLight.addTo(GAME);
+Box.addTo(GAME);
 terrain.floor.forEach(ground => ground.addTo(GAME));
 
 if (isMobile()) {
