@@ -12,7 +12,7 @@ import isMobile from './utils/mobile';
 const blocker = document.getElementById('blocker');
 const btnFullscreen = document.getElementById('btnFullscreen');
 const terrain = new Terrain({
-  world: GAME,
+  camera: isMobile() ? GAME.camera : Person,
   geometry: {
     width: 800,
     height: 800
@@ -22,7 +22,7 @@ const css3d = new CSS3D(GAME.camera.getNative());
 
 css3d.addElement({
   name: 'hello',
-  html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/YE7VzlLtp-4" frameborder="0" allowfullscreen></iframe>',
+  html: '<iframe width="300" height="150" src="https://www.youtube.com/embed/YE7VzlLtp-4" frameborder="0" allowfullscreen></iframe>',
   pos: {
     y: 200,
     z: -400

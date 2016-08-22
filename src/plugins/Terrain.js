@@ -21,14 +21,14 @@ function Ground(x, y, z, geometry) {
 }
 export default class Terrain {
   constructor(params) {
-    const camPos = params.world.camera.getNative().position;
+    const camPos = params.camera.getNative().position;
     this.floor = [
       Ground(camPos.x, 0, camPos.z, params.geometry),
       Ground(camPos.x + params.geometry.width, 0, camPos.z, params.geometry),
       Ground(camPos.x, 0, camPos.z + params.geometry.height, params.geometry),
       Ground(camPos.x + params.geometry.width, 0, camPos.z + params.geometry.height, params.geometry)
     ];
-    this.loop = this.loopRenderer(this.floor, params.world.camera.getNative(), params.geometry);
+    this.loop = this.loopRenderer(this.floor, params.camera.getNative(), params.geometry);
   }
   loopRenderer(floor, camera, geometry) {
     return new WHS.Loop(() => {
