@@ -7,7 +7,7 @@ function Ground(x, y, z, geometry) {
     mass: 0,
     material: {
       color: 0xCDBF81,//0x5566aa,
-      kind: 'basic'
+      kind: 'phong'
     },
     pos: {
       x,
