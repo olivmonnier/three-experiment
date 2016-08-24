@@ -14,8 +14,8 @@ const btnFullscreen = document.getElementById('btnFullscreen');
 const terrain = new Terrain({
   camera: isMobile() ? GAME.camera : Person,
   geometry: {
-    width: 800,
-    height: 800
+    width: 400,
+    height: 400
   }
 });
 const css3d = new CSS3D(GAME.camera.getNative());

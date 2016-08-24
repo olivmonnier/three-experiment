@@ -1,4 +1,7 @@
 function Ground(x, y, z, geometry) {
+  let texture = WHS.texture('img/hexagon.jpg');
+  texture.repeat.set(4, 4);
+
   return new WHS.Plane({
     geometry: {
       width: geometry.width,
@@ -6,8 +9,8 @@ function Ground(x, y, z, geometry) {
     },
     mass: 0,
     material: {
-      color: 0xCDBF81,//0x5566aa,
-      kind: 'phong'
+      kind: 'lambert',
+      map: texture
     },
     pos: {
       x,

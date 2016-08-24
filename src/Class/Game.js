@@ -28,6 +28,6 @@ export const GAME = new WHS.World({
     type: 'regular',
     hex: 0x7ec0ee,
     near: 10,
-    far: 500
+    far: 300
   }
 });
